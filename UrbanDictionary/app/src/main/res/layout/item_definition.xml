@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10sp"
+    android:layout_marginBottom="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvDefinition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/colorPrimaryVariant"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/tvExample"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvDefinition"
+        android:text="@string/app_name"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorText"/>
+
+    <ImageView
+        android:id="@+id/ivThumbUp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvExample"
+        app:layout_constraintEnd_toStartOf="@id/tvThumbUp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_thumb_up"/>
+
+    <TextView
+        android:id="@+id/tvThumbUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/ivThumbDown"
+        app:layout_constraintBottom_toBottomOf="@id/ivThumbDown"
+        app:layout_constraintEnd_toStartOf="@id/ivThumbDown"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorText"/>
+
+    <ImageView
+        android:id="@+id/ivThumbDown"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvExample"
+        app:layout_constraintEnd_toStartOf="@id/tvThumbDown"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_thumb_down"/>
+
+    <TextView
+        android:id="@+id/tvThumbDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/ivThumbDown"
+        app:layout_constraintBottom_toBottomOf="@id/ivThumbDown"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorText"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

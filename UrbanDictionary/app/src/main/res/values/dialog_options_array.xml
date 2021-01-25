@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dialog_options">
+        <item>More thumbs up first</item>
+        <item>More thumbs down first</item>
+    </string-array>
+</resources>

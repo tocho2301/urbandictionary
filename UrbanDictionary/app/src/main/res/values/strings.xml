@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Urban Dictionary</string>
+    <string name="search_bar_hint">Type something</string>
+    <string name="definitions_string">Definitions:</string>
+    <string name="order_by_thumb_title">Default</string>
+    <string name="order_by_dialog_title">Order by</string>
+</resources>
