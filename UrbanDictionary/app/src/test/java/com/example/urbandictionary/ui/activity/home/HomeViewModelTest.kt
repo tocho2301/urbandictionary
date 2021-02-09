@@ -25,7 +25,6 @@ class HomeViewModelTest {
     @JvmField
     val instantExecutorRule = InstantTaskExecutorRule()
 
-
     @Before
     fun setUp() {
         mockedWordDefinitionRepository = Mockito.mock(WordDefinitionRepository::class.java)

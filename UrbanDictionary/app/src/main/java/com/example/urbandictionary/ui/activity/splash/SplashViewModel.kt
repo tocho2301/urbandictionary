@@ -1,13 +1,13 @@
 package com.example.urbandictionary.ui.activity.splash
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.*
+import javax.inject.Inject
 import kotlin.concurrent.schedule
 
 
-class SplashViewModel @ViewModelInject constructor(
+class SplashViewModel @Inject constructor(
      var timer: Timer
 ): ViewModel() {
 

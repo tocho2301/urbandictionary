@@ -8,20 +8,24 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.urbandictionary.R
 import com.example.urbandictionary.databinding.ActivityHomeBinding
+import com.example.urbandictionary.di.UrbanDictionaryApplication
+import com.example.urbandictionary.ui.activity.splash.SplashViewModel
 import com.example.urbandictionary.ui.adapter.WordDefinitionAdapter
-import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
-@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityHomeBinding
 
-    private val viewModel : HomeViewModel by viewModels()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by viewModels<HomeViewModel> { viewModelFactory }
 
     @Inject lateinit var wordDefinitionAdapter : WordDefinitionAdapter
 
@@ -30,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as UrbanDictionaryApplication).getComponent().inject(this)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -45,11 +50,11 @@ class HomeActivity : AppCompatActivity() {
             viewModel.onOrderByButtonClicked()
         }
 
-        setUpReciclerView()
+        setUpRecyclerView()
         setUpObservables()
     }
 
-    private fun setUpReciclerView() {
+    private fun setUpRecyclerView() {
         binding.clResult.rvDefinitions.layoutManager = linearLayoutManager
         binding.clResult.rvDefinitions.adapter = wordDefinitionAdapter
     }

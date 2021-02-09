@@ -1,14 +1,14 @@
 package com.example.urbandictionary.ui.activity.home
 
 import android.annotation.SuppressLint
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.urbandictionary.entity.WordDefinition
 import com.example.urbandictionary.entity.worddefinition.repository.WordDefinitionRepository
+import javax.inject.Inject
 
-class HomeViewModel @ViewModelInject constructor(
+class HomeViewModel @Inject constructor(
     var wordDefinitionRepository: WordDefinitionRepository
 ) : ViewModel() {
 

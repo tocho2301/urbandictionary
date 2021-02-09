@@ -21,8 +21,8 @@ class WordDefinitionAdapter (var list: ArrayList<WordDefinition>): RecyclerView.
         return list.size
     }
 
-    fun updateData(arrayList: ArrayList<WordDefinition>){
-        this.list = arrayList
+    fun updateData(list: ArrayList<WordDefinition>){
+        this.list = list
         notifyDataSetChanged()
     }
 
