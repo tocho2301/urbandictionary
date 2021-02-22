@@ -11,8 +11,8 @@ interface WordDefinitionApi {
 
     interface GetWordDefinitions{
         @GET("define")
-        fun getDefinitions(@Header("x-rapidapi-key") apiKey:String,
-                           @Header("x-rapidapi-host") apiHost:String,
-                           @Query("term") word : String) : Observable<GetWordDefinitionsResponse>
+        fun getDefinitions(@Header("x-rapidapi-key") apiKey:String?,
+                           @Header("x-rapidapi-host") apiHost:String?,
+                           @Query("term") word : String?) : Observable<GetWordDefinitionsResponse>
     }
 }

@@ -9,5 +9,5 @@ import com.example.urbandictionary.entity.WordDefinition
     version = 1
 )
 abstract class WordDefinitonDB : RoomDatabase(){
-    abstract fun WordDefinitionDAO() :  WordDefinitionDAO
+    abstract fun wordDefinitionDAO() :  WordDefinitionDAO
 }

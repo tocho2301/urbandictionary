@@ -15,7 +15,7 @@ class WordDefinitionRepository(
     IWordDefinitionRepository {
 
 
-    override fun getDefinitionsFromServer(word: String): Observable<ArrayList<WordDefinition>> {
+    override fun getDefinitionsFromServer(word: String?): Observable<ArrayList<WordDefinition>> {
         return wordDefinitionRetrofitModule.getWordDefinitions()
             .getDefinitions(BuildConfig.URBANDICTIONARY_API_KEY, BuildConfig.URBANDICTIONARY_API_HOST, word)
             .subscribeOn(Schedulers.io())
@@ -30,7 +30,7 @@ class WordDefinitionRepository(
     }
 
     override fun saveDefinitonInCache(wordDefinitionList : ArrayList<WordDefinition>): Observable<Int> {
-        return wordDefinitonDB.WordDefinitionDAO().saveWordDefinitionList(wordDefinitionList)
+        return wordDefinitonDB.wordDefinitionDAO().saveWordDefinitionList(wordDefinitionList)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .toObservable()
@@ -38,7 +38,7 @@ class WordDefinitionRepository(
     }
 
     override fun getDefinitionsFromCache(word: String): Observable<ArrayList<WordDefinition>> {
-        return wordDefinitonDB.WordDefinitionDAO().searchWordDefinition(word)
+        return wordDefinitonDB.wordDefinitionDAO().searchWordDefinition(word)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .flatMap {

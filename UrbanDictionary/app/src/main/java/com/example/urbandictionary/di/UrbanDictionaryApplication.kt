@@ -11,7 +11,11 @@ class UrbanDictionaryApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        applicationComponent = DaggerApplicationComponent.builder().activityModule(ActivityModule()).appModule(AppModule(this)).repositoryModule(RepositoryModule()).build()
+        applicationComponent = DaggerApplicationComponent.builder()
+            .activityModule(ActivityModule())
+            .appModule(AppModule(this))
+            .repositoryModule(RepositoryModule())
+            .build()
     }
 
     fun getComponent() = applicationComponent

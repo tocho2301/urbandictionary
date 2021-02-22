@@ -4,19 +4,21 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.urbandictionary.BuildConfig
 import com.example.urbandictionary.entity.WordDefinition
 import com.example.urbandictionary.entity.worddefinition.repository.WordDefinitionRepository
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
-    var wordDefinitionRepository: WordDefinitionRepository
+   private var wordDefinitionRepository: WordDefinitionRepository
 ) : ViewModel() {
 
-    private val _showDefinitions = MutableLiveData<ArrayList<WordDefinition>>()
-    val showDefinitions : LiveData<ArrayList<WordDefinition>> get() = _showDefinitions
+    private val _definitonsList = MutableLiveData<ArrayList<WordDefinition>>()
+    val definitonsList : LiveData<ArrayList<WordDefinition>> get() = _definitonsList
 
-    private val _showError = MutableLiveData<String>()
-    val showError : LiveData<String> get() = _showError
+    private val _errorMesage = MutableLiveData<String>()
+    val errorMesage : LiveData<String> get() = _errorMesage
 
     private val _showProgressBar = MutableLiveData<Boolean>()
     val showProgressBar : LiveData<Boolean> get() = _showProgressBar
@@ -30,8 +32,8 @@ class HomeViewModel @Inject constructor(
     private val _orderListBy = MutableLiveData<Int>()
     val orderListBy : LiveData<Int> get() = _orderListBy
 
-    private val _changeORderByText = MutableLiveData<String>()
-    val changeOrderByText : LiveData<String> get() = _changeORderByText
+    private val _changeOrderByText = MutableLiveData<String>()
+    val changeOrderByText : LiveData<String> get() = _changeOrderByText
 
 
     @SuppressLint("CheckResult")
@@ -39,16 +41,17 @@ class HomeViewModel @Inject constructor(
         _showProgressBar.value = true
         _showResultLayout.value = false
         wordDefinitionRepository.getDefinitionsFromServer(word)
-            .subscribe({ wordDefinitions ->
-                _showProgressBar.postValue(false)
-                _showResultLayout.postValue(true)
-                _showDefinitions.postValue(wordDefinitions)
-                saveDefinitionsListInCache(wordDefinitions)
-                _changeORderByText.value = "Default"
-            },{ throwable ->
-                _showProgressBar.postValue(false)
-                _showError.postValue(throwable.message)
-            })
+                .subscribe({ wordDefinitions ->
+                    saveDefinitionsListInCache(wordDefinitions)
+                    _showResultLayout.postValue(true)
+                    _definitonsList.postValue(wordDefinitions)
+                    _changeOrderByText.postValue("Default")
+                    _showProgressBar.postValue(false)
+
+                },{ throwable ->
+                    _showProgressBar.postValue(false)
+                    _errorMesage.postValue(throwable.message)
+                })
     }
 
     @SuppressLint("CheckResult")
@@ -60,19 +63,19 @@ class HomeViewModel @Inject constructor(
                 if(wordDefinitions.size>0) {
                     _showProgressBar.postValue(false)
                     _showResultLayout.postValue(true)
-                    _showDefinitions.postValue(wordDefinitions)
-                    _changeORderByText.value = "Default"
+                    _definitonsList.postValue(wordDefinitions)
+                    _changeOrderByText.value = "Default"
                 }
             },{ throwable ->
                 _showProgressBar.postValue(false)
-                _showError.postValue(throwable.message)
+                _errorMesage.postValue(throwable.message)
             })
     }
 
     @SuppressLint("CheckResult")
     fun saveDefinitionsListInCache(list: ArrayList<WordDefinition>){
         wordDefinitionRepository.saveDefinitonInCache(list)
-            .subscribe ({}, {})
+            .subscribe ()
     }
 
     fun onOrderByButtonClicked() {
@@ -81,12 +84,12 @@ class HomeViewModel @Inject constructor(
 
     fun onOrderByThumbsUp() {
         _orderListBy.value = 0
-        _changeORderByText.value = "More thumbs up first"
+        _changeOrderByText.value = "More thumbs up first"
     }
 
     fun onOrderByThumbsDown() {
         _orderListBy.value = 1
-        _changeORderByText.value = "More thumbs down first"
+        _changeOrderByText.value = "More thumbs down first"
     }
 
 }

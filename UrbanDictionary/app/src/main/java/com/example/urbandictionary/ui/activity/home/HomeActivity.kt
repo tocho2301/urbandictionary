@@ -60,12 +60,12 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setUpObservables() {
-        viewModel.showDefinitions.observe(this, { wordDefinitionList ->
+        viewModel.definitonsList.observe(this, { wordDefinitionList ->
             (binding.clResult.rvDefinitions.adapter as WordDefinitionAdapter).updateData(wordDefinitionList)
             binding.clResult.tvWord.text = wordDefinitionList[0].word
         })
 
-        viewModel.showError.observe(this, {
+        viewModel.errorMesage.observe(this, {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
 
