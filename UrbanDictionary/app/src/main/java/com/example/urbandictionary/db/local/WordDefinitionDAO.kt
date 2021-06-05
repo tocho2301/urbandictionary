@@ -3,9 +3,8 @@ package com.example.urbandictionary.db.local
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.urbandictionary.entity.WordDefinition
+import com.example.urbandictionary.entity.worddefinition.WordDefinition
 import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Observable
 
 @Dao

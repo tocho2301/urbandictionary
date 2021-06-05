@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.urbandictionary.databinding.ItemDefinitionBinding
-import com.example.urbandictionary.entity.WordDefinition
+import com.example.urbandictionary.entity.worddefinition.WordDefinition
 
 class WordDefinitionAdapter (var list: ArrayList<WordDefinition>): RecyclerView.Adapter<WordDefinitionAdapter.ViewHolder>() {
 

@@ -2,7 +2,7 @@ package com.example.urbandictionary.db.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.urbandictionary.entity.WordDefinition
+import com.example.urbandictionary.entity.worddefinition.WordDefinition
 
 @Database(
     entities = [WordDefinition::class],

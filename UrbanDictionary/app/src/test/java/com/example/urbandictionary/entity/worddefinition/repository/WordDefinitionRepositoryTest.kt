@@ -1,15 +1,13 @@
 package com.example.urbandictionary.entity.worddefinition.repository
 
-import androidx.lifecycle.Observer
 import com.example.urbandictionary.db.local.WordDefinitionDAO
 import com.example.urbandictionary.db.local.WordDefinitonDB
-import com.example.urbandictionary.entity.WordDefinition
+import com.example.urbandictionary.entity.worddefinition.WordDefinition
 import com.example.urbandictionary.entity.worddefinition.retrofit.WordDefinitionApi
 import com.example.urbandictionary.entity.worddefinition.retrofit.WordDefinitionRetrofitModule
 import com.example.urbandictionary.entity.worddefinition.retrofit.response.GetWordDefinitionsResponse
 import io.reactivex.Completable
 import io.reactivex.Observable
-import io.reactivex.Scheduler
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.observers.TestObserver
 import io.reactivex.schedulers.Schedulers
@@ -18,7 +16,6 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.mockito.*
-import java.util.concurrent.Callable
 import java.util.concurrent.TimeUnit
 
 class WordDefinitionRepositoryTest {

@@ -2,14 +2,11 @@ package com.example.urbandictionary.ui.activity.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.example.urbandictionary.entity.WordDefinition
+import com.example.urbandictionary.entity.worddefinition.WordDefinition
 import com.example.urbandictionary.entity.worddefinition.repository.WordDefinitionRepository
-import com.example.urbandictionary.entity.worddefinition.retrofit.response.GetWordDefinitionsResponse
 import io.reactivex.Observable
-import io.reactivex.disposables.Disposable
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
-import org.hamcrest.CoreMatchers
 import org.junit.Before
 import org.hamcrest.CoreMatchers.`is`
 

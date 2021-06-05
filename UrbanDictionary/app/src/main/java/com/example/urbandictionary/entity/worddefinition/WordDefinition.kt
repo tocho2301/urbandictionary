@@ -1,4 +1,4 @@
-package com.example.urbandictionary.entity
+package com.example.urbandictionary.entity.worddefinition
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

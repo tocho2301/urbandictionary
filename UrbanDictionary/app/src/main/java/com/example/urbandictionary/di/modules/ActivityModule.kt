@@ -2,7 +2,7 @@ package com.example.urbandictionary.di.modules
 
 import android.content.Context
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.urbandictionary.entity.WordDefinition
+import com.example.urbandictionary.entity.worddefinition.WordDefinition
 import com.example.urbandictionary.ui.adapter.WordDefinitionAdapter
 import dagger.Module
 import dagger.Provides

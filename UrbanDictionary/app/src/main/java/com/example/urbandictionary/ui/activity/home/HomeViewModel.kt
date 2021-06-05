@@ -1,13 +1,11 @@
 package com.example.urbandictionary.ui.activity.home
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.urbandictionary.BuildConfig
-import com.example.urbandictionary.entity.WordDefinition
+import com.example.urbandictionary.entity.worddefinition.WordDefinition
 import com.example.urbandictionary.entity.worddefinition.repository.WordDefinitionRepository
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
@@ -35,12 +33,13 @@ class HomeViewModel @Inject constructor(
     private val _changeOrderByText = MutableLiveData<String>()
     val changeOrderByText : LiveData<String> get() = _changeOrderByText
 
+    var disposableList = CompositeDisposable()
 
-    @SuppressLint("CheckResult")
+
     fun getDefinitions(word : String){
         _showProgressBar.value = true
         _showResultLayout.value = false
-        wordDefinitionRepository.getDefinitionsFromServer(word)
+        disposableList.add(wordDefinitionRepository.getDefinitionsFromServer(word)
                 .subscribe({ wordDefinitions ->
                     saveDefinitionsListInCache(wordDefinitions)
                     _showResultLayout.postValue(true)
@@ -51,14 +50,13 @@ class HomeViewModel @Inject constructor(
                 },{ throwable ->
                     _showProgressBar.postValue(false)
                     _errorMesage.postValue(throwable.message)
-                })
+                }))
     }
 
-    @SuppressLint("CheckResult")
     fun getLocalDefinitions(word : String){
         _showProgressBar.value = true
         _showResultLayout.value = false
-        wordDefinitionRepository.getDefinitionsFromCache(word)
+        disposableList.add(wordDefinitionRepository.getDefinitionsFromCache(word)
             .subscribe({ wordDefinitions ->
                 if(wordDefinitions.size>0) {
                     _showProgressBar.postValue(false)
@@ -69,13 +67,12 @@ class HomeViewModel @Inject constructor(
             },{ throwable ->
                 _showProgressBar.postValue(false)
                 _errorMesage.postValue(throwable.message)
-            })
+            }))
     }
 
-    @SuppressLint("CheckResult")
     fun saveDefinitionsListInCache(list: ArrayList<WordDefinition>){
-        wordDefinitionRepository.saveDefinitonInCache(list)
-            .subscribe ()
+        disposableList.add(wordDefinitionRepository.saveDefinitonInCache(list)
+            .subscribe ())
     }
 
     fun onOrderByButtonClicked() {
@@ -90,6 +87,11 @@ class HomeViewModel @Inject constructor(
     fun onOrderByThumbsDown() {
         _orderListBy.value = 1
         _changeOrderByText.value = "More thumbs down first"
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposableList.clear()
     }
 
 }

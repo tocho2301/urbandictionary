@@ -2,7 +2,7 @@ package com.example.urbandictionary.entity.worddefinition.repository
 
 import com.example.urbandictionary.BuildConfig
 import com.example.urbandictionary.db.local.WordDefinitonDB
-import com.example.urbandictionary.entity.WordDefinition
+import com.example.urbandictionary.entity.worddefinition.WordDefinition
 import com.example.urbandictionary.entity.worddefinition.retrofit.WordDefinitionRetrofitModule
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -1,6 +1,6 @@
 package com.example.urbandictionary.entity.worddefinition.repository
 
-import com.example.urbandictionary.entity.WordDefinition
+import com.example.urbandictionary.entity.worddefinition.WordDefinition
 import io.reactivex.Observable
 
 interface IWordDefinitionRepository {
